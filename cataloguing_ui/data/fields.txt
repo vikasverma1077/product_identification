@@ -1,0 +1,13 @@
+product_name
+vendor
+product_url
+category
+sub_category
+tags
+is_dirty
+is_dang
+skip_count
+is_xray
+tagged_by
+epoch
+

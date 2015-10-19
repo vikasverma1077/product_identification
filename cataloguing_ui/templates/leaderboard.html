@@ -1,0 +1,27 @@
+{% extends "base_tagging.html" %}
+
+{% block content %}
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Tag Count</th>
+			<th>User Id</th>
+			<th>E-Mail</th>
+            <th>Verify Count</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in users %}
+			<tr>
+				<td>{{user.name}}</td>
+				<td>{{user.tags}}</td>
+				<td>{{user.id}}</td>
+				<td>{{user.email}}</td>
+                <td>{{user.tags_verified}}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

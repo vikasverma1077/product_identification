@@ -1,0 +1,41 @@
+{% extends "base_tagging.html" %}
+
+{% block content %}
+
+<li>Please select a category and then enter the name of desired sub-category in the text-box.</li>
+<p></p>
+
+<form method="post" action="">
+    <select name="category" >
+        <option value='-1'>----------- Select Category -----------</option>
+        {% for cat in available_cats %}
+            <option value='{{cat._id}}'>{{cat.category_name}}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="subcat" size="30"></input>
+    <input id="add-button" type="submit" class="btn btn-primary" value="Add Sub-Category">
+</form>
+
+<br>
+{% if subcat_status == 'Added' %}
+    <div class="btn alert alert-success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Sub-Category Added Successfully!&nbsp&nbsp</strong>
+    </div>
+{% endif %}
+{% if subcat_status == 'Error' %}
+    <div class="btn alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Invalid input!&nbsp&nbsp</strong>
+    </div>
+{% endif %}
+
+{% with messages = get_flashed_messages(category_filter=["error"]) %}
+  {% if messages %}
+    {% for message in messages %}
+        <script>$.notify("Access denied. Please login as Admin.", {clickToHide: true});</script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% endblock %}

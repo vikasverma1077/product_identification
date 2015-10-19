@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title> Product Tagging - Delhivery {% block title %}{% endblock %}</title>
+    <link rel="icon" href="{{ url_for('bp.static', filename='img/delhivery-favicon.png') }}">
+    <link href="{{ url_for('bp.static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('bp.static', filename='css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ url_for('bp.static', filename='css/main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('bp.static', filename='css/jquery-ui.css') }}" rel="stylesheet">
+
+    <script src="{{ url_for('bp.static', filename='js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ url_for('bp.static', filename='js/jquery-ui.min.js') }}"></script>
+    <script src="{{ url_for('bp.static', filename='js/notify.min.js') }}"></script>
+    <script src="{{ url_for('bp.static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('bp.static', filename='js/taggify.js') }}"></script>
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" >Delhivery - Product Tagging</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li><a>{{username}}</a></li>
+              <li><a>Tag Count: <span id="tag-count">{{tag_count}}</span></a></li>
+              <li><a>Verify Count: <span id="verify-count">{{verify_count}}</span></a></li>
+              <li><a href="{{ url_for('bp.logout') }}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav">
+                    {% block side_block %} {% endblock %}
+                    <li><a href="{{ url_for('bp.tag', q='tag') }}">Tag Products</a></li>
+                    <li><a href="{{ url_for('bp.tag', q='verify') }}">Verify Products</a></li>
+                    <li><a href="{{ url_for('bp.tag', q='3-skips') }}">Skipped Products</a></li>
+                    <li><a href="{{ url_for('bp.add_subcat') }}">Add Sub-Category</a></li>
+                    <li><a href="{{ url_for('bp.get_tags') }}">Tags-list</a></li>
+                    <li><a href="{{ url_for('bp.view_leaderboard') }}">Leaderboard</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+           <div id="content">
+                {% block content %}{% endblock %}
+           </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('bp.static', filename='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
