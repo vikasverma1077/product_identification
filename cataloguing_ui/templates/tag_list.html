@@ -1,0 +1,36 @@
+{% extends "base_tagging.html" %}
+
+{% block content %}
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Fixed Attributes</th>
+        <th>Dynamic Attributes</th>
+      </tr>
+    <tbody>
+      <tr>
+      <td>
+        B1 - Brand<br>
+        C1 - Color<br>
+        D1 - Dimensions<br>
+        F1 - Flavour/Fragrance<br>
+        M1 - Model Name<br>
+        M2 - Model No<br>
+        O1 - Others<br>
+        P1 - Price<br>
+        P2 - Product Name<br>
+        P3 - Product Type<br>
+        S1 - Style No<br>
+        V1 - Volume/Quantity<br>        
+        W1 - Weight<br>
+        W2 - Wattage/Power<br>
+      </td>
+      <td>
+        {% for attr, code in tags.items() %}
+            {{ code }} - {{attr}}<br>
+        {% endfor %}
+      </td>
+      </tr>
+      </tbody>
+    </table>
+{% endblock %}

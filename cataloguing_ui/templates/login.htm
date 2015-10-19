@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Product tagging - Delhivery</title>
+    <link rel="icon" href="{{ url_for('bp.static', filename='img/delhivery-favicon.png') }}">
+    <script src="{{ url_for('bp.static', filename='js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ url_for('bp.static', filename='js/notify.min.js') }}"></script>
+    
+    <style>
+
+      #centered
+      {
+        width: 300px;
+        height: 200px;
+        margin: auto;
+        top: 250px;
+        position: relative;
+      }
+
+      img
+      {
+        margin: 25px;
+        opacity: 0.8;
+        border: 10px solid #eee;
+        /*Transition*/
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        /*Reflection*/
+        -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.1)));
+      }
+
+      img:hover
+      {
+        opacity: 1;
+        /*Reflection*/
+        -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.4)));
+        /*Glow*/
+        -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+        -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+        box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+      }
+
+      img-box
+      {
+        -webkit-box-shadow: 2px 3px 15px 3px #000000;
+        box-shadow: 2px 3px 15px 3px #000000;
+        border: 5px solid;
+      }
+
+      body
+      {
+        background: url("{{ url_for('bp.static', filename='img/maze.png') }}") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+
+    </style>
+</head>
+
+<body>
+
+  {% with messages = get_flashed_messages(category_filter=["error"]) %}
+  {% if messages %}
+    {% for message in messages %}
+        <script>$.notify("E-mail ID not allowed. Please login with Delhivery or Registered Email ID only.",{clickToHide: true});</script>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <div id="centered">
+    <a href="/cat-ui/google-redirect"><img src="{{ url_for('bp.static', filename='img/google.png') }}" height="25%" width = "70%" class='img-box'/></a>
+    <p></p>
+<!--     <a href="/cat-ui/fb-login?next=/cat-ui/tag-it"><img src="{{ url_for('bp.static', filename='img/facebook.png') }}" height="25%" width = "70%" class='img-box'/></a> -->
+  </div>
+
+</body>
+</html>

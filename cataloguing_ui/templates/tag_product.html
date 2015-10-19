@@ -1,0 +1,103 @@
+{% extends "base_tagging.html" %}
+
+{% block content %}
+
+<li>Please select atleast one out of the following drop-downs. If you select more than one, the result will be an intersection of the selected drop-downs.</li>
+<p></p>
+
+<select id="select-vendor">
+  <option value="-1">------- Select Vendor -------</option>
+  {% for vendor in vendors %}
+    <option value={{vendor}}>{{vendor}}</option>
+  {% endfor %}
+  <option value="All">--- All Vendors ---</option>
+</select>
+
+<select id="select-category">
+  <option value='-1'>----------- Select Category -----------</option>
+  {% for cat in available_cats1 %}
+    <option value='{{cat._id}}'>{{cat.category_name}}</option>
+  {% endfor %}
+</select>
+
+<select id="select-price-range">
+  <option value='-1'>----------- Select Price Range -----------</option>
+  {% for i in range(6) %}
+    <option value='{{price_range_value_list[i]}}'>{{price_range_text_list[i]}}</option>
+  {% endfor %}
+</select>
+
+<input type="submit" class="btn btn-primary" value="Get Products" id="get-products-button">
+
+<div id="tag-products" style="display:none">
+  <h4>Product details :</h4>
+  <table class="table table-bordered table-hover">
+      <tbody>
+          <tr><td>Product Name</td><td><span id='org_prod_name'></span></td></tr>
+          <tr><td>Vendor</td><td><a href="#" target="_blank" id='vendor_name'></a></td></tr>
+          <tr><td>Category Identified</td><td><span id='category'></span></td></tr>
+          <tr><td>Sub-Category Identified</td><td><span id='sub-category'></span></td></tr>
+          <tr><td>Price</td><td>Rs. <span id='price'></span></td></tr>
+      </tbody>
+  </table>
+
+  Update category:
+  <select id="update-category">
+      <option value='-1'>----------- Select Category -----------</option>
+      {% for cat in available_cats %}
+        <option value='{{cat._id}}'>{{cat.category_name}}</option>
+      {% endfor %}
+  </select>
+  <select id="update-subcategory" disabled></select>
+  <input type="submit" class="btn btn-primary" value="Update Category" id="update-button">
+
+  <div id='tag_template' style="display:none">
+  <div class='tag_list'>
+      <table>
+          <tr>
+          <td class="tag_holder">
+            <a href='#' tagtype = "B1" tabindex='100'><span class="tag_text">Brand</span></a>
+            <a href='#' tagtype = "M1" tabindex='101'><span class="tag_text">Model Name</span></a>
+            <a href='#' tagtype = "M2" tabindex='102'><span class="tag_text">Model No.</span></a>
+            <a href='#' tagtype = "P2" tabindex='103'><span class="tag_text">Product Name</span></a>
+            <a href='#' tagtype = "P3" tabindex='104'><span class="tag_text">Product Type</span></a>
+            <a href='#' tagtype = "P1" tabindex='105'><span class="tag_text">Price</span></a>
+            <a href='#' tagtype = "W1" tabindex='106'><span class="tag_text">Weight</span></a>
+            <a href='#' tagtype = "C1" tabindex='107'><span class="tag_text">Color</span></a>
+            <a href='#' tagtype = "D1" tabindex='108'><span class="tag_text">Dimensions</span></a>
+            <a href='#' tagtype = "V1" tabindex='109'><span class="tag_text">Volume/Quantity</span></a>
+            <a href='#' tagtype = "S1" tabindex='110'><span class="tag_text">Style No.</span></a>
+            <a href='#' tagtype = "F1" tabindex='111'><span class="tag_text">Flavour/Fragrance</span></a>
+            <a href='#' tagtype = "W2" tabindex='112'><span class="tag_text">Wattage/Power</span></a>
+            <a href='#' tagtype = "O1" tabindex='113'><span class="tag_text">Others</span></a>
+          </td>
+          <td class="tag_holder extra-attrs">
+            <!--<a href='#' tagtype = "M2"><span class="tag_text">Memory</span></a>-->
+          </td>
+          </tr>
+      </table>
+  </div>
+  </div>
+  <span class="address" id="selectable"></span><br>
+  <!--
+  <input type="checkbox" id="dangerous-goods" value="dangerous_goods">Dangerous Goods?
+  <input type="checkbox" id="x-ray" value="x_ray">X-Ray?
+  -->
+  <input type="checkbox" id="dirty-name" value="dirty_name">Dirty Product Name?
+  <div class="buttons">
+    <input type="submit" class="btn btn-primary" value="Submit" id="submit-button">
+    <input type="submit" class="btn btn-primary" value="Clear" id="clear-button">
+    <input type="button" class="btn btn-primary" value="Skip this product" id="skip-button">
+    <input type="button" class="btn btn-primary" value="Undo" id="undo-button">
+  </div>
+</div>
+
+{% with messages = get_flashed_messages(category_filter=["error"]) %}
+  {% if messages %}
+    {% for message in messages %}
+        <script>$.notify("Access denied. Please login as Admin.", {clickToHide: true});</script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% endblock %}

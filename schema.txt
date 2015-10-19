@@ -1,0 +1,25 @@
+Required Fields for all the schemas
+
+Vendor_Table_Schema :
+vendor_id | vendor_name
+
+Product_Table_Schema :
+product_id | vendor_id | vendor_category_id | product_name | product_info
+
+Delhivery_Category_Schema :
+delhivery_cat_id | delhivery_cat_name | parent_delhivery_cat_id
+
+Vendor_Category_Schema :
+vendor_cat_id | vendor_id | parent_vendor_cat_id | leaf_product_id_list
+
+Vendor_Category_Mapping_Schema
+delhivery_cat_id | vendor_id | vendor_cat_id_list
+
+Queries to Run :
+
+Get x random products for a delhivery_id y
+Get x random products for a delhivery_id y and vendor_id z
+Get x random products for a vendor_cat_id y and vendor_id z
+Get x random products for a vendor_id z
+
+
